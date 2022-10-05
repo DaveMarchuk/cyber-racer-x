@@ -4,23 +4,9 @@ import { Character } from "./character.js";
 
 // Utility Logic
 
-function rollDice(carType) {// refactor code 
-  let finalScore = 0;
-
-  if (carType === "tuner") {
-    diceType = 0;
-  } else if  (carType === "electric")  {
-    diceType = 6;
-  } else if (carType === "muscle") {
-    diceType = 8;
-  } else if (carType === "bike") {
-    diceType = 12;
-  } else if  (carType === "monster truck") {
-    diceType = 4;
-  } else diceType = 3;
-
+function rollDice(Character) {// refactor code 
+  //let finalScore = 0
   let dieRoll = Math.floor((Math.random() * 6) + 1);
-  console.log(dieRoll);
   return dieRoll;
 }
 
@@ -35,13 +21,27 @@ export default class RaceSystem {
   runRace() {
     let p1 = this.playerOne;
     let npc = this.playerTwo;
-    p1.carDice = rollDice();
-    npc.carDice = rollDice("monster truck");
-    console.log(p1.carDice);
-    console.log(npc.carDice);
+    let p1RollTotal = 0;
+    let npcRollTotal = 0;
+    let flag = false;
 
-    if (p1.carDice > npc.carDice) {
-      return true;
-    } else return false;
+    while (flag === false) {
+      console.log("for loop starts");
+      p1.carDice = rollDice();
+      npc.carDice = rollDice();
+      p1RollTotal += p1.carDice;
+      npcRollTotal += npc.carDice;
+      console.log(p1RollTotal);
+      console.log(npcRollTotal);
+      if  (p1RollTotal >= 100) {
+        console.log("100 for p1");
+        flag = true;
+        return true;
+      } else if (npcRollTotal >= 100)  {
+        console.log("100 for NPC");
+        flag = true;
+        return false;
+      } else; 
+    }
   }
 }

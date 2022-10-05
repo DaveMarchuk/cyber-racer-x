@@ -24,8 +24,9 @@ describe("Race system", () => {
     const npcEnemy = new Character("Big Bubba","monster truck"); //need to add utility
     const newRace = new RaceSystem(playerCharacter, npcEnemy, stage);
     
-    expect(newRace.runRace()).toEqual(true);
     expect(newRace.runRace()).toEqual(false);
-    
-  })
+    expect(newRace.runRace()).toEqual(true);
+  });
+
+  //test('it should increment player dice rolls to sum up to a given length for a race stage')
 })
